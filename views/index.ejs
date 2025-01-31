@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html translate="no" lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="google" content="notranslate" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Land of secrecy</title>
+  </head>
+  <body>
+    <div class="">
+      <input type="password" name="password" id="password-input" />
+      <button id="pass-visibility">Show</button>
+      <div class="">hey</div>
+    </div>
+    <script>
+      const passBtn = document.getElementById("pass-visibility");
+      const passInp = document.getElementById("password-input");
+      passBtn.addEventListener("click", (e) => {
+        let inputType = passInp.getAttribute("type");
+        if (inputType === "password") {
+          passInp.type = "text";
+        } else {
+          passInp.type = "password";
+        }
+      });
+    </script>
+  </body>
+</html>
