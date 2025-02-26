@@ -53,7 +53,6 @@ async function postRegisterForm(req, res) {
   const bgcolor = pickBgColor();
   const formattedUsername = username.toLowerCase();
   const isNameValid = await db.isUsernameValid(formattedUsername);
-  console.log(bgcolor);
   if (isNameValid) {
     const hashedPassword = await bcrypt.hash(password, 10);
     db.registerNewUser({

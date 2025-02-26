@@ -23,38 +23,60 @@ async function registerNewUser(userObject) {
 async function getRole(secretCode) {
   const role = await pool.query(
     `
-      SELECT * FROM secrets WHERE secretcode = $1
+      SELECT * FROM secrets WHERE secretcode = $1;
     `,
     [secretCode],
   );
   return role.rows[0];
 }
 
+async function isSlugValid(slug) {
+  const post = await pool.query(
+    `
+      SELECT * FROM posts WHERE slug = $1;
+      `,
+    [slug],
+  );
+  return !post.rows[0];
+}
+
+async function createNewPost(postObject) {
+  const { title, post, timestamp, userId, slug } = postObject;
+  await pool.query(
+    `
+        INSERT INTO posts (title,post,timestamp,user_id,slug)
+        VALUES ($1,$2,$3,$4,$5)
+        `,
+    [title, post, timestamp, userId, slug],
+  );
+}
+
 async function assignRole(username, secretCode) {
   const res = await getRole(secretCode);
   if (res) {
-    console.log(username)
+    console.log(username);
     const { newrole } = res;
-   const process = await pool.query(
+    await pool.query(
       `
-      UPDATE users SET role = $1 WHERE username = $2`,
+      UPDATE users SET role = $1 WHERE username = $2;`,
       [newrole, username],
     );
   }
 }
-async function assignDirectRole(username,role) {
-   await pool.query(
-      `
-      UPDATE users SET role = $1 WHERE username = $2`,
-      [role, username],
-    );
-  }
-
+async function assignDirectRole(username, role) {
+  await pool.query(
+    `
+      UPDATE users SET role = $1 WHERE username = $2;`,
+    [role, username],
+  );
+}
 
 module.exports = {
   isUsernameValid,
   registerNewUser,
   assignRole,
   getRole,
-  assignDirectRole
+  isSlugValid,
+  assignDirectRole,
+  createNewPost,
 };

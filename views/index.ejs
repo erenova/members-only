@@ -3,23 +3,45 @@
   <head>
     <%- include('partials/head', {title:"Members-Only Dashboard"}) %>
   </head>
-  <body class="font-[roboto] ">
-    <%- include('./partials/header') %>
-    <%- include('./partials/modal') %>
-    <%- include('./partials/background') %>
-  
-<div class="w-full flex  items-center justify-center flex-col relative ">
-  <div class="container  flex  justify-center md:mt-8 mt-4">
-  <%- include('./partials/authorOffer') %>
-  <% console.log(user) %>
-<%- include('./partials/thoughtbox') %>
-  </div>
-  
-</div>
-
-
-
-  
-
+  <body class="font-[roboto]">
+    <%- include('./partials/header') %> <%- include('./partials/modal') %> <%-
+    include('./partials/background') %> <%- include('./partials/error') %> <%-
+    include('./partials/success') %>
+    <div class="w-full flex items-center justify-center flex-col relative">
+      <div
+        class="container flex sm:flex-row flex-col justify-center md:mt-8 mt-4 gap-8 sm:gap-16 md:gap-24"
+      >
+        <div
+          class="flex flex-col border order-2 sm:order-1 p-y bg-white rounded-sm p-4 w-72 sm:w-auto self-center sm:self-auto"
+        >
+          <div
+            class="text-stone-800 font-semibold text-lg flex justify-around sm:self-auto sm:gap-8"
+          >
+            <span>Latest Posts</span>
+            <a href="" class="underline">View all posts</a>
+          </div>
+          <div class="" id="holder">
+            <div class="border">
+              <div class="">
+                <span>TITLETITLETITLE</span>
+              </div>
+            </div>
+            <div class="border">
+              <div class="">
+                <span>TITLETITLETITLE</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="border p-4 bg-white rounded-sm w-72 md:w-60 lg:w-auto self-center sm:self-start order-1 sm:order-2"
+        >
+          <% if ( locals.user.level === 10) { %> <%-
+          include('./partials/authorOffer') %> <% } else { %> <%
+          console.log(user) %> <%- include('./partials/thoughtbox') %>
+        </div>
+        <% } %>
+      </div>
+    </div>
   </body>
 </html>

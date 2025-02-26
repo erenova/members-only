@@ -1,4 +1,26 @@
-<% if (locals.success) { %>
+<% if ( locals.successFloat) { %>
+<div
+  id="success-box"
+  class="text-emerald-600 w-56 md:text-2xl border self-center mt-4 mb-2 absolute z-50 bg-white left-2 top-2 -translate-x-[150%] transition-transform rounded-sm"
+>
+  <div
+    class="rounded-xs flex items-center gap-4 px-1 break-words text-wrap w-56"
+  >
+    <i class="fa-solid fa-square-check absolute right-0.5 bottom-0.5"></i>
+    <div class="w-46 pr-2"><%= locals.successFloat %></div>
+  </div>
+</div>
+<script>
+  const successBox = document.getElementById("success-box");
+
+  setTimeout(() => {
+    successBox.classList.remove("-translate-x-[150%]");
+  }, 500);
+  setTimeout(() => {
+    successBox.classList.add("-translate-x-[150%]");
+  }, 2000);
+</script>
+<% } %> <% if (locals.success) { %>
 <p
   class="text-emerald-600 relative flex justify-center items-center border w-[95%]"
 >
