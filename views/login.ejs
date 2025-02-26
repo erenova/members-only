@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html translate="no" lang="en">
+  <head>
+    <%- include('partials/head', {title:"Members-Only Login"}) %>
+    <style>
+      .text-shadow {
+        text-shadow: 2px 4px 10px hsla(0, 0%, 0%, 0.4);
+      }
+    </style>
+  </head>
+  <body class="font-[roboto]">
+    <%- include('./partials/background') %>
+
+    <%- include('partials/header') %> <%- include(`partials/form`,{ form: {
+    type: `login`, otherFormIcon:`fa-user-plus`, otherFormText:`Register`,
+    otherFormUrl: "/auth/register", loginText: `Come In`, title:`Login` , url:
+    `/auth/login`, textGradient: `transition-colors hover:bg-emerald-500
+    hover:ring-emerald-500 ` } }) %>
+    <script>
+      const passBtn = document.getElementById("pass-visibility");
+      const passInp = document.getElementById("password");
+      const eyeIcon = document.getElementById("eye-icon");
+      passBtn.addEventListener("click", (e) => {
+        let inputType = passInp.getAttribute("type");
+
+        if (inputType === "password") {
+          eyeIcon.classList.remove("fa-eye-slash");
+          eyeIcon.classList.remove("fa-eye");
+          eyeIcon.classList.add("fa-eye-slash");
+
+          passInp.type = "text";
+        } else {
+          eyeIcon.classList.remove("fa-eye-slash");
+          eyeIcon.classList.remove("fa-eye");
+          eyeIcon.classList.add("fa-eye");
+          passInp.type = "password";
+        }
+      });
+    </script>
+  </body>
+</html>

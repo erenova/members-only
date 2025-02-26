@@ -1,0 +1,10 @@
+<% if (locals.error) { %>
+<div class="text-red-600 w-56 self-center mt-4 mb-2">
+  <div
+    class="border rounded-xs flex items-center gap-4 px-1 break-words text-wrap w-56"
+  >
+    <i class="fa-solid fa-triangle-exclamation ml-1"></i>
+    <div class="w-46 pr-2"><%= locals.error %></div>
+  </div>
+</div>
+<% } %>

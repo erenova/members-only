@@ -1,0 +1,29 @@
+<% if (locals.user) { %>
+    <div class="w-full justify-center flex  mt-2 ">
+        <div
+          class="flex justify-between items-center px-[5%] p-4 container   select-none border-b sm:border-none  "
+        >
+          <a href="">User List</a>
+        
+          <div
+            class="flex justify-center items-center gap-1 sm:gap-2 group cursor-pointer relative pb-2 select-none"
+          >
+            <div
+              class="font-light text-ellipsis overflow-hidden w-32 text-end <%= user.namecolor %>"
+            >
+              <%= user.displayname %>
+            </div>
+            <div
+              class="relative rounded-full border-2 w-9 h-9 flex justify-center items-center text-white border-gray-800 font-bold <%= user.bgcolor %>"
+            >
+<% if (user.role === "jerk-member") { %>
+  <i class="fa-solid fa-poo absolute top-0 right-0 text-yellow-900 -translate-y-[70%] translate-x-2/4 rotate-[35deg]"></i>
+
+<% } %>              <%= user.displayname[0].toUpperCase() %>
+            </div>
+            <%- include('dropdown') %>
+          </div>
+        </div>
+    </div>
+    <% } %>
+    

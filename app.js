@@ -2,7 +2,9 @@ const path = require("node:path");
 const express = require("express");
 const session = require("express-session");
 const passport = require("passport");
-const indexRouter = require("./routes/indexRouter");
+const homeRouter = require("./routes/homeRouter");
+const authRouter = require("./routes/authRouter");
+const roleRouter = require("./routes/roleRouter");
 const pgStore = require("connect-pg-simple")(session);
 
 require("dotenv").config();
@@ -42,7 +44,9 @@ app.use(
 app.use(passport.session());
 
 // Routers
-app.use(indexRouter);
+app.use(homeRouter);
+app.use(authRouter);
+app.use(roleRouter);
 
 // app Listener
 const PORT = process.env.PORT || 3000;

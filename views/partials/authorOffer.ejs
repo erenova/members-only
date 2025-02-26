@@ -1,0 +1,39 @@
+<% if ( locals.user.level <= 10) { %>
+    <div class="">
+        <div class="text-2xl">Want to be an author?</div>
+        <div class="flex justify-center gap-8 p-2">
+          <button id="secret-button" class="border bg-white hover:bg-emerald-500 hover:text-white transition-colors cursor-pointer p-2 rounded-sm text-emerald-500 border-black shadow-lg drop-shadow-lg">Yes</button>
+        <button id="jerk-button" class="border bg-white cursor-not-allowed p-2 rounded-xs shadow-lg drop-shadow-lg text-gray-600 border-black">I'm Jerk</button>
+        </div>
+      </div>
+<script>
+        const secretBtn = document.getElementById('secret-button');
+        const jerkBtn = document.getElementById('jerk-button');
+        const secretForm = document.getElementById('secret-form');
+        const jerkForm = document.getElementById('jerk-form');
+        const overlay = document.getElementById('overlay')
+        const modal = document.getElementById('modal')
+        secretForm.classList.add('hidden')
+        jerkForm.classList.add('hidden')
+
+        secretBtn.addEventListener('click',  (e) => {
+            secretForm.classList.remove('hidden')
+          overlay.classList.remove('hidden')
+          modal.classList.remove('hidden')
+        })
+
+        jerkBtn.addEventListener('click',  (e) => {
+            jerkForm.classList.remove('hidden')
+        overlay.classList.remove('hidden')
+        modal.classList.remove('hidden')
+      })
+        
+        overlay.addEventListener('click',  (e) => {
+
+            secretForm.classList.add('hidden')
+            jerkForm.classList.add('hidden')
+          overlay.classList.add('hidden')
+          modal.classList.add('hidden')
+        })
+      </script>
+<% } %>

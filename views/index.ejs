@@ -1,28 +1,25 @@
 <!DOCTYPE html>
 <html translate="no" lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="google" content="notranslate" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Land of secrecy</title>
+    <%- include('partials/head', {title:"Members-Only Dashboard"}) %>
   </head>
-  <body>
-    <div class="">
-      <input type="password" name="password" id="password-input" />
-      <button id="pass-visibility">Show</button>
-      <div class="">hey</div>
-    </div>
-    <script>
-      const passBtn = document.getElementById("pass-visibility");
-      const passInp = document.getElementById("password-input");
-      passBtn.addEventListener("click", (e) => {
-        let inputType = passInp.getAttribute("type");
-        if (inputType === "password") {
-          passInp.type = "text";
-        } else {
-          passInp.type = "password";
-        }
-      });
-    </script>
+  <body class="font-[roboto] ">
+    <%- include('./partials/header') %>
+    <%- include('./partials/modal') %>
+    <%- include('./partials/background') %>
+  
+<div class="w-full flex  items-center justify-center flex-col relative ">
+  <div class="container  flex  justify-center md:mt-8 mt-4">
+  <%- include('./partials/authorOffer') %>
+  <% console.log(user) %>
+<%- include('./partials/thoughtbox') %>
+  </div>
+  
+</div>
+
+
+
+  
+
   </body>
 </html>

@@ -9,10 +9,9 @@ passport.use(
     try {
       const { rows } = await pool.query(
         "SELECT * FROM users WHERE username = $1",
-        [username],
+        [username.toLowerCase()],
       );
       const user = rows[0];
-
       if (!user) {
         return done(null, false, { message: "Incorrect username" });
       }
@@ -21,13 +20,14 @@ passport.use(
       if (!match) {
         return done(null, false, { message: "Incorrect Password" });
       }
+      return done(null, user);
     } catch (err) {
       return done(err);
     }
   }),
 );
 passport.serializeUser((user, done) => {
-  done(null, user.id);
+  done(null, user.user_id);
 });
 
 passport.deserializeUser(async (id, done) => {
@@ -42,3 +42,8 @@ passport.deserializeUser(async (id, done) => {
     done(err);
   }
 });
+
+module.exports = {
+  bcrypt,
+  passport,
+};

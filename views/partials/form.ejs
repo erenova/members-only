@@ -1,0 +1,87 @@
+<div
+  class="w-[250px] h-[300px] sm:wf absolute top-2/4 left-2/4 -translate-2/4 flex flex-col justify-end items-center"
+>
+  <%- include('success') %>
+  <form
+    class="w-full border rounded flex flex-col mt-2 p-3 bg-stone-50 drop-shadow-2xl"
+    action="<%= locals.form.url %>"
+    method="POST"
+  >
+    <Legend
+      class="text-gray-800 text-2xl font-medium text-center drop-shadow-lg"
+      ><%= locals.form.title %></Legend
+    >
+    <%- include('error') %> <%- include('warn') %>
+    <fieldset
+      class="flex flex-col justify-center items-center mt-2 w-3/4 self-center"
+    >
+      <label class="self-start" for="username"> User name:</label>
+      <input
+        class="border-2 border-gray-500 rounded-md w-full h-7 focus:border-teal-500 focus:outline-none"
+        type="text"
+        name="username"
+        id="username"
+        required
+      />
+      <% if (locals.form.type === "register") { %>
+      <label class="self-start mt-2" for="displayname"> Display name:</label>
+      <input
+        class="border-2 border-gray-500 rounded-md w-full h-7 focus:border-teal-500 focus:outline-none"
+        type="text"
+        name="displayname"
+        id="displayname"
+        required
+      />
+      <% } %>
+      <label class="self-start mt-2" for="password">password:</label>
+      <div class="relative w-full flex justify-center items-center">
+        <input
+          class="border-2 border-gray-500 rounded-md w-full h-7 focus:border-teal-500 focus:outline-none text-sm"
+          type="password"
+          name="password"
+          id="password"
+          required
+        />
+        <button
+          type="button"
+          class="cursor-pointer ml-5 absolute right-0 translate-x-[150%]"
+          id="pass-visibility"
+        >
+          <i id="eye-icon" class="fa-regular fa-eye w-5 h-4"></i>
+        </button>
+      </div>
+      <button
+        type="submit"
+        class="border p-4 rounded-lg h-6 w-24 my-4 cursor-pointer flex justify-center items-center hover:ring-1 hover:border-transparent <%= locals.form?.textGradient %>"
+      >
+        <%= locals.form.loginText %>
+      </button>
+      <div class="flex justify-center items-center gap-6 pb-6">
+        <a
+          href="<%= locals.form.otherFormUrl %>"
+          class="flex flex-col justify-center items-center relative"
+        >
+          <div
+            class="border rounded-md cursor-pointer text-gray-500 hover:text-gray-700 flex justify-center items-center p-1 px-2 h-8 w-8 transition-colors"
+          >
+            <i class="fa-solid <%= locals.form.otherFormIcon %>"></i>
+            <span class="text-sm absolute bottom-0 translate-y-full pt-1"
+              ><%= locals.form.otherFormText %></span
+            >
+          </div>
+        </a>
+        <button type="button" class="relative">
+          <div
+            class="border rounded-md cursor-pointer text-black flex justify-center items-center p-1 px-2 h-8 w-8 transition-colors hover:bg-gray-700 hover:text-white"
+          >
+            <i class="fa-solid fa-user-secret"></i>
+            <span
+              class="text-sm absolute bottom-0 translate-y-full pt-1 text-black"
+              >Guest</span
+            >
+          </div>
+        </button>
+      </div>
+    </fieldset>
+  </form>
+</div>
