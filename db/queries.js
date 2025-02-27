@@ -30,6 +30,15 @@ async function getRole(secretCode) {
   return role.rows[0];
 }
 
+async function getAllPosts(limit) {
+  const posts = await pool.query(
+    `
+SELECT post_id, post, a.user_id, timestamp, title, slug, b.username, b.displayname,b.role,b.bgcolor FROM posts a
+ JOIN users b ON a.user_id = b.user_id ORDER BY timestamp DESC LIMIT 5`,
+  );
+  return posts.rows;
+}
+
 async function isSlugValid(slug) {
   const post = await pool.query(
     `
@@ -70,6 +79,12 @@ async function assignDirectRole(username, role) {
     [role, username],
   );
 }
+async function getUserById(user_id) {
+  const user = await pool.query(`SELECT * FROM users WHERE user_id = $1`, [
+    user_id,
+  ]);
+  return user.rows[0];
+}
 
 module.exports = {
   isUsernameValid,
@@ -79,4 +94,6 @@ module.exports = {
   isSlugValid,
   assignDirectRole,
   createNewPost,
+  getAllPosts,
+  getUserById,
 };

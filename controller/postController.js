@@ -1,7 +1,6 @@
 const { validationResult, body } = require("express-validator");
 const db = require("../db/queries");
 
-const titleErr = "must only contain letters or numbers.";
 const titleLengthErr = "Must be between 1 and 32 characters.";
 const messageLengthErr = "Must be between 1 and 125 characters.";
 
@@ -9,8 +8,6 @@ const validatePostInput = [
   body("title")
     .ltrim()
     .rtrim()
-    .isAlphanumeric("en-US", { ignore: " " })
-    .withMessage(`Title ${titleErr}`)
     .isLength({ min: 1, max: 32 })
     .withMessage(`Title ${titleLengthErr}`),
   body("post")

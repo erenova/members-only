@@ -22,32 +22,33 @@ const profileBgColors = [
 ];
 
 const roleDetails = {
-  "guest": {
+  guest: {
     level: 0,
     bgcolor: "bg-zinc-600",
     namecolor: "text-slate-500",
   },
 
-  "member": {
+  member: {
     level: 10,
     namecolor: "text-neutral-900",
+    unauthorized: "anonymous",
   },
   "jerk-member": {
     level: 100,
     namecolor: "text-yellow-800",
-      },
-  "author": {
-    level: 100,
-    namecolor: "text-violet-700",
   },
-  "admin": {
+  author: {
+    level: 100,
+    namecolor: "text-violet-900",
+  },
+  admin: {
     level: 1000,
     namecolor: "text-teal-600",
   },
   "super-admin": {
     level: 999999,
     namecolor:
-      "font-extrabold text-transparent bg-clip-text bg-gradient-to-b from-purple-700 to-cyan-300",
+      "font-extrabold text-transparent bg-clip-text bg-gradient-to-b from-purple-700  to-cyan-400 overflow-visible ",
   },
 };
 

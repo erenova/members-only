@@ -1,0 +1,52 @@
+<div class="border rounded-md h-28 w-60">
+  <div class="w-full h-full p-3">
+    <!-- Title -->
+    <div class="w-full overflow-hidden truncate">
+      <%= activePost.title %>agasgasgasgasgasg
+    </div>
+    <!-- Comments icon/amount -->
+    <div class="flex gap-4 justify-between items-end h-full pb-6">
+      <div class="flex justify-between px-2 w-full gap-4">
+        <div class="text-gray-500 flex flex-col text-sm self-end text-center">
+          <div><%=activePost.date.hour %>:<%=activePost.date.minute %></div>
+
+          <div><%= activePost.date.monthName %> <%=activePost.date.day %></div>
+        </div>
+        <div class="flex flex-col text-sky-950 self-center">
+          <div class=""><%= activePost.date.day %></div>
+          <i class="fa-solid fa-comment-dots"></i>
+        </div>
+      </div>
+      <!-- Profile Picture -->
+      <div
+        class="flex relative select-none pr-2 justify-center items-center gap-1"
+      >
+        <div
+          class="font-extralight text-end w-16 text-sm text-ellipsis overflow-hidden <%= activePost.namecolor %>"
+        >
+          <%= user.unauthorized || activePost.displayname %>
+        </div>
+        <div
+          class="relative rounded-full border-2 w-7 h-7 flex items-center justify-center text-white border-gray-800 font-bold <%= activePost.bgcolor %>"
+        >
+          <% if (activePost.role === "jerk-member") { %>
+          <i
+            class="fa-solid fa-poo absolute top-0 right-0 text-yellow-900 text-sm -translate-y-[70%] translate-x-2/4 rotate-[35deg]"
+          ></i>
+          <% } %> <% if (activePost.role === "super-admin") { %>
+          <i
+            class="fa-solid fa-graduation-cap absolute -top-1 left-0 text-blue-800 text-lg -translate-y-[60%] -translate-x-2/4 -rotate-[35deg]"
+          ></i>
+
+          <i
+            class="font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-emerald-600 overflow-visible fa-solid fa-code absolute bottom-0 right-0 translate-x-4/4 translate-y-2/4 border rounded-sm p-0.5 text-[14px]"
+          ></i>
+          <% } %>
+          <span class="text-center text-sm">
+            <%= activePost.displayname[0].toUpperCase() %></span
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
