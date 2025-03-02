@@ -21,20 +21,35 @@
             <a href="" class="underline">View all posts</a>
           </div>
           <div class="p-2 flex flex-col gap-2" id="holder">
-            <% if (locals.posts) { %> <%- include('./partials/latestItemLoop')
-            %> <% } %>
+            <% if (locals.posts) { %> <% console.log(locals.posts) %> <% for(
+            let i = 0; i < locals.posts.length; i++ ) { %> <%-
+            include('./partials/latestItem', {activePost:
+            {date:locals.getDate(locals.posts[i].timestamp),...roleDetails[locals.posts[i].role],...locals.posts[i]}})
+            %> <% } %> <% } %>
           </div>
         </div>
         <div
           class="border p-4 bg-white rounded-sm w-72 md:w-60 lg:w-auto self-center sm:self-start order-1 sm:order-2"
         >
-          <% if ( locals.user.level === 10) { %> <%-
-          include('./partials/authorOffer') %> <% } else { %> <%-
-          include('./partials/thoughtbox') %>
+          <div class="font-bold text-xl" for="search">Search Post</div>
+          <form action="/posts/search">
+            <div class="flex items-center">
+              <button
+                class="border-2 rounded-l-lg border-r-0 p-0.5 border-gray-500"
+              >
+                <i class="fa-solid fa-magnifying-glass text-lg"></i>
+              </button>
+              <input
+                class="focus:outline-none pl-1 border-2 p-0.5 border-gray-500 rounded-r-lg focus:border-teal-500"
+                type="text"
+                name="search"
+                id="search"
+                required
+              />
+            </div>
+          </form>
         </div>
-        <% } %>
       </div>
     </div>
-    <%- include('./partials/clearQuery') %>
   </body>
 </html>

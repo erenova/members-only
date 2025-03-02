@@ -31,10 +31,14 @@ async function getRole(secretCode) {
 }
 
 async function getAllPosts(limit) {
+  let limitText = "";
+  if (limit) {
+    limitText = `LIMIT ${limit}`;
+  }
   const posts = await pool.query(
     `
 SELECT post_id, post, a.user_id, timestamp, title, slug, b.username, b.displayname,b.role,b.bgcolor FROM posts a
- JOIN users b ON a.user_id = b.user_id ORDER BY timestamp DESC LIMIT 5`,
+ JOIN users b ON a.user_id = b.user_id ORDER BY timestamp DESC ${limitText}`,
   );
   return posts.rows;
 }
@@ -80,11 +84,19 @@ async function assignDirectRole(username, role) {
   );
 }
 async function getUserById(user_id) {
-  const user = await pool.query(`SELECT * FROM users WHERE user_id = $1`, [
-    user_id,
-  ]);
+  const user = await pool.query(
+    `SELECT user_id,username,displayname,role,bgcolor FROM users WHERE user_id = $1`,
+    [user_id],
+  );
   return user.rows[0];
 }
+
+async function getPostsBySlug(slug) {
+  const post = await pool.query(`SELECT * FROM posts WHERE slug = $1`, [slug]);
+  return post.rows[0];
+}
+
+async function getCommentsByPost(post_id) {}
 
 module.exports = {
   isUsernameValid,
@@ -96,4 +108,6 @@ module.exports = {
   createNewPost,
   getAllPosts,
   getUserById,
+  getPostsBySlug,
+  getCommentsByPost,
 };

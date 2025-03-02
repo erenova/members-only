@@ -1,31 +1,61 @@
-<div class="border rounded-md h-28 w-60">
+<div class="border rounded-md h-28 w-60 drop-shadow-lg  shadow bg-white <%= activePost.role === "super-admin" ? "border-purple-500  border-2" : "" %> 
+  <%= activePost.role === "jerk-member"? "border-yellow-800 ": "" %>">
+  <a
+    href="/post/<%= activePost.slug %>"
+    class="absolute w-full h-full top-0 left-0"
+  ></a>
   <div class="w-full h-full p-3">
     <!-- Title -->
-    <div class="w-full overflow-hidden truncate">
-      <%= activePost.title %>agasgasgasgasgasg
-    </div>
-    <!-- Comments icon/amount -->
-    <div class="flex gap-4 justify-between items-end h-full pb-6">
-      <div class="flex justify-between px-2 w-full gap-4">
-        <div class="text-gray-500 flex flex-col text-sm self-end text-center">
+    <div class="w-full overflow-hidden truncate"><%= activePost.title %></div>
+    <!-- Comments/Date/Author -->
+    <div class="flex justify-between items-end h-full pb-6">
+      <div class="flex justify-between items-end w-20">
+        <!-- Date -->
+        <div class="text-gray-500 flex flex-col text-sm text-center">
           <div><%=activePost.date.hour %>:<%=activePost.date.minute %></div>
-
           <div><%= activePost.date.monthName %> <%=activePost.date.day %></div>
         </div>
-        <div class="flex flex-col text-sky-950 self-center">
-          <div class=""><%= activePost.date.day %></div>
+        <!-- Comments -->
+        <div class="flex flex-col justify-center items-center text-sky-950">
           <i class="fa-solid fa-comment-dots"></i>
+          <div class="text-xs"><%= activePost.date.day %></div>
         </div>
       </div>
       <!-- Profile Picture -->
-      <div
-        class="flex relative select-none pr-2 justify-center items-center gap-1"
+      <a
+        href="/user/<%= activePost.username %>"
+        class="flex select-none pr-2 justify-center items-center gap-1"
       >
-        <div
-          class="font-extralight text-end w-16 text-sm text-ellipsis overflow-hidden <%= activePost.namecolor %>"
-        >
-          <%= user.unauthorized || activePost.displayname %>
+        <!-- Username -->
+        <div class="flex justify-center items-center gap-1">
+          <% if (activePost.role === "super-admin") { %>
+          <!-- Super Admin Title -->
+          <div
+            class="place-self-center font-extrabold text-end w-16 text-sm text-ellipsis overflow-hidden <%= activePost.namecolor %> absolute blur-md"
+          >
+            <%= user.unauthorized || activePost.displayname %>
+          </div>
+          <div class="absolute top-3 right-2 flex justify-center items-center">
+            <div
+              class="text-xs bg-white text-purple-500 font-bold glow-text border p-1 py-0.5 rounded"
+            >
+              dev
+            </div>
+            <div
+              class="absolute text-purple-500 animate-ping text-2xl flex justify-center items-center p-1 py-0.5"
+            >
+              <i class="fa-regular fa-circle"></i>
+            </div>
+          </div>
+          <% } %>
+          <div
+            class="font-extralight text-end w-16 text-sm text-ellipsis overflow-hidden <%= activePost.namecolor %>"
+          >
+            <%= user.unauthorized || activePost.displayname %>
+          </div>
         </div>
+
+        <!-- Profile pic and Icons -->
         <div
           class="relative rounded-full border-2 w-7 h-7 flex items-center justify-center text-white border-gray-800 font-bold <%= activePost.bgcolor %>"
         >
@@ -34,19 +64,23 @@
             class="fa-solid fa-poo absolute top-0 right-0 text-yellow-900 text-sm -translate-y-[70%] translate-x-2/4 rotate-[35deg]"
           ></i>
           <% } %> <% if (activePost.role === "super-admin") { %>
+          <!--  VIP Badge -->
+
+          <!-- Admin Icon -->
           <i
             class="fa-solid fa-graduation-cap absolute -top-1 left-0 text-blue-800 text-lg -translate-y-[60%] -translate-x-2/4 -rotate-[35deg]"
           ></i>
-
           <i
             class="font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-emerald-600 overflow-visible fa-solid fa-code absolute bottom-0 right-0 translate-x-4/4 translate-y-2/4 border rounded-sm p-0.5 text-[14px]"
           ></i>
           <% } %>
+
+          <!-- profile photo -->
           <span class="text-center text-sm">
-            <%= activePost.displayname[0].toUpperCase() %></span
-          >
+            <%= activePost.displayname[0].toUpperCase() %>
+          </span>
         </div>
-      </div>
+      </a>
     </div>
   </div>
 </div>

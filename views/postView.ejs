@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html translate="no" lang="en">
+  <head>
+    <%- include('partials/head', {title:"Members-Only Dashboard"}) %>
+  </head>
+  <body class="font-[roboto]">
+    <%- include('./partials/header') %> <%- include('./partials/modal') %> <%-
+    include('./partials/background') %> <%- include('./partials/error') %> <%-
+    include('./partials/success') %>
+    <div class="w-full flex items-center justify-center flex-col relative">
+      <div
+        class="container flex sm:flex-row flex-col justify-center md:mt-8 mt-4 gap-8 sm:gap-16 md:gap-24"
+      >
+        <div
+          class="flex flex-col border relative mb-8 order-2 sm:order-1 p-y w-[90%] bg-white rounded-sm p-4 sm:max-w-xl md:max-w-2xl lg:max-w-3xl xl:max-w-4xl overflow-hidden self-center sm:self-auto"
+        >
+          <div class="p-2 flex flex-col gap-2" id="holder">
+            <!-- POST HEADER -->
+            <div class="flex justify-between">
+              <!-- post Title -->
+              <div class="font-semibold text-2xl sm:text-3xl">
+                <%= locals.post.title %>
+              </div>
+              <!-- Post date and author -->
+              <div class="">
+                <div class="font-medium border-b text-xl text-center">
+                  Post created
+                </div>
+                <div class="flex flex-col sm:flex-row">
+                  <div
+                    class="flex flex-col items-center gap-3 border-b sm:border-r sm:border-b-0 p-1 relative"
+                  >
+                    <span class="font-medium text-lg">By</span>
+                    <!-- Dev Icon -->
+                    <div
+                      class="absolute top-2 right-1 flex justify-center items-center"
+                    >
+                      <div
+                        class="text-xs bg-white text-purple-500 font-bold glow-text border p-1 py-0.5 rounded"
+                      >
+                        dev
+                      </div>
+                    </div>
+                    <a
+                      href="/user/<%= author.username %>"
+                      class="flex flex-col select-none pr-2 justify-center items-center gap-1"
+                    >
+                      <div
+                        class="relative rounded-full border-2 w-7 h-7 flex items-center justify-center text-white border-gray-800 font-bold <%= author.bgcolor %>"
+                      >
+                        <% if (author.role === "jerk-member") { %>
+                        <i
+                          class="fa-solid fa-poo absolute top-0 right-0 text-yellow-900 text-sm -translate-y-[70%] translate-x-2/4 rotate-[35deg]"
+                        ></i>
+                        <% } %> <% if (author.role === "super-admin") { %>
+                        <!-- Admin Icon -->
+                        <i
+                          class="fa-solid fa-graduation-cap absolute -top-1 left-0 text-blue-800 text-lg -translate-y-[60%] -translate-x-2/4 -rotate-[35deg]"
+                        ></i>
+                        <i
+                          class="font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-emerald-600 overflow-visible fa-solid fa-code absolute bottom-0 right-0 translate-x-4/4 translate-y-2/4 border rounded-sm p-0.5 text-[14px]"
+                        ></i>
+                        <% } %>
+                        <!-- profile photo -->
+                        <span class="text-center text-sm">
+                          <%= author.displayname[0].toUpperCase() %>
+                        </span>
+                      </div>
+                      <!-- Username -->
+                      <div class="flex justify-center items-center gap-1">
+                        <% if (author.role === "super-admin") { %>
+                        <!-- Super Admin Title -->
+                        <div
+                          class="place-self-center font-extrabold text-end w-16 text-sm text-ellipsis overflow-hidden <%= author.namecolor %> absolute blur-md"
+                        >
+                          <%= user.unauthorized || author.displayname %>
+                        </div>
+
+                        <% } %>
+                        <!-- User name for all -->
+                        <div
+                          class="font-extralight text-end text-sm break-words overflow-hidden <%= author.namecolor %>"
+                        >
+                          <%= user.unauthorized || author.displayname %>
+                        </div>
+                      </div>
+                      <!-- Profile pic and Icons -->
+                    </a>
+                  </div>
+                  <div
+                    class="flex flex-col items-center border-t sm:border-l sm:border-t-0 p-1"
+                  >
+                    <span class="font-medium text-lg">At</span>
+                    <div class="sm:text-lg text-sm">
+                      <div class="italic">
+                        <span
+                          ><%= locals.post.date.monthName %> <%=
+                          locals.post.date.day %></span
+                        >
+                        <span
+                          ><%= locals.post.date.hour %>:<%=
+                          locals.post.date.minute %></span
+                        >
+                        <p class=""><%= locals.post.date.year%></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            hey
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+<!-- <div class="w-4 "><%- include('./partials/messageIcon') %></div> -->

@@ -9,13 +9,12 @@
     </style>
   </head>
   <body class="font-[roboto]">
-    <%- include('./partials/background') %>
-
-    <%- include('partials/header') %> <%- include(`partials/form`,{ form: {
-    type: `login`, otherFormIcon:`fa-user-plus`, otherFormText:`Register`,
-    otherFormUrl: "/auth/register", loginText: `Come In`, title:`Login` , url:
-    `/auth/login`, textGradient: `transition-colors hover:bg-emerald-500
-    hover:ring-emerald-500 ` } }) %>
+    <%- include('./partials/background') %> <%- include('partials/header') %>
+    <%- include(`partials/form`,{ form: { type: `login`,
+    otherFormIcon:`fa-user-plus`, otherFormText:`Register`, otherFormUrl:
+    "/auth/register", loginText: `Come In`, title:`Login` , url: `/auth/login`,
+    textGradient: `transition-colors hover:bg-emerald-500 hover:ring-emerald-500
+    ` } }) %>
     <script>
       const passBtn = document.getElementById("pass-visibility");
       const passInp = document.getElementById("password");
@@ -37,5 +36,6 @@
         }
       });
     </script>
+    <%- include('./partials/clearQuery') %>
   </body>
 </html>

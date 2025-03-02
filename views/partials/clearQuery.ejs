@@ -1,0 +1,13 @@
+<script>
+  setTimeout(() => {
+    if (history.pushState) {
+      let newurl =
+        window.location.protocol +
+        "//" +
+        window.location.host +
+        window.location.pathname +
+        "";
+      window.history.pushState({ path: newurl }, "", newurl);
+    }
+  }, 0);
+</script>

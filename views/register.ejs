@@ -4,12 +4,11 @@
     <%- include('partials/head', {title:"Members-Only Register"}) %>
   </head>
   <body class="font-[roboto]">
-    <%- include('./partials/background') %>
-
-    <%- include('partials/header') %> <%- include(`partials/form`,{ form: {
-    type: `register`, otherFormIcon:`fa-arrow-right-to-bracket`,
-    otherFormText:`Login`, otherFormUrl: "/auth/login", loginText: `Join Us`,
-    title:`Register` , url:`/auth/register`, textGradient: `transition-transform
+    <%- include('./partials/background') %> <%- include('partials/header') %>
+    <%- include(`partials/form`, { form: { type: `register`,
+    otherFormIcon:`fa-arrow-right-to-bracket`, otherFormText:`Login`,
+    otherFormUrl: "/auth/login", loginText: `Join Us`, title:`Register` ,
+    url:`/auth/register`, textGradient: `transition-transform
     hover:ring-purple-500 hover:scale-105 hover:text-transparent
     hover:bg-clip-text hover:bg-gradient-to-r hover:from-sky-400 to-fuchsia-500`
     } }) %>
@@ -35,5 +34,6 @@
         }
       });
     </script>
+    <%- include('./partials/clearQuery') %>
   </body>
 </html>
