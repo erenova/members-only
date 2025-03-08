@@ -4,14 +4,19 @@ const populateDate = require("../utils/dateFormatting");
 
 async function getHome(req, res) {
   const { error, success, errorFloat, successFloat } = req.query;
-  const posts = await db.getAllPosts(5);
+  let posts = await db.getAllPosts(5);
+  let newPosts = [];
+  for (let index = 0; index < posts.length; index++) {
+    const totalComment = await db.getCommentCountByPost(posts[index].post_id);
+    newPosts.push({ ...posts[index], ...totalComment });
+  }
   res.render("index", {
     user: { ...req.user, ...roleDetails[req.user.role] },
     errorFloat: errorFloat,
     error: error,
     success: success,
     successFloat: successFloat,
-    posts: populateDate(posts),
+    posts: populateDate(newPosts),
     roleDetails,
   });
 }

@@ -90,10 +90,10 @@ function logout(req, res, next) {
       if (err) {
         console.log(err);
       }
+      res.redirect(
+        `/auth/login?success=${encodeURI("Successfully logged out.")}`,
+      );
     });
-    res.redirect(
-      `/auth/login?success=${encodeURI("Successfully logged out.")}`,
-    );
   } else {
     res.redirect(`/auth/register`);
   }

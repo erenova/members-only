@@ -1,0 +1,39 @@
+<div class="p-2">
+  <div class="font-medium border-b text-xl text-center">
+    Post created <% if (author.level >999) { %>
+    <div class="absolute flex justify-center items-center right-2 top-2">
+      <div
+        class="text-xs bg-white text-purple-500 font-bold glow-text border p-1 py-0.5 rounded"
+      >
+        dev
+      </div>
+    </div>
+    <% } %>
+  </div>
+  <div
+    class="grid grid-cols-2 flex-row justify-around sm:justify-center text-center"
+  >
+    <div
+      class="flex flex-col items-center gap-3 sm:border-r border-b-0 p-1 relative"
+    >
+      <span class="font-medium text-lg">By</span>
+      <!-- Dev Icon -->
+
+      <%- include('./authorProfile') %>
+    </div>
+    <div class="flex flex-col items-center gap-y-3 sm:border-l border-t-0 p-1">
+      <span class="font-medium text-lg">At</span>
+      <div class="text-sm">
+        <div class="italic">
+          <span
+            ><%= locals.post.date.monthName %> <%= locals.post.date.day %></span
+          >
+          <span
+            ><%= locals.post.date.hour %>:<%= locals.post.date.minute %></span
+          >
+          <p class=""><%= locals.post.date.year%></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

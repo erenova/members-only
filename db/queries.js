@@ -91,12 +91,50 @@ async function getUserById(user_id) {
   return user.rows[0];
 }
 
-async function getPostsBySlug(slug) {
+async function getPostBySlug(slug) {
   const post = await pool.query(`SELECT * FROM posts WHERE slug = $1`, [slug]);
   return post.rows[0];
 }
 
-async function getCommentsByPost(post_id) {}
+async function getCommentsByPost(post_id) {
+  const comments = await pool.query(
+    ` SELECT * FROM comments 
+   JOIN users ON users.user_id = comments.user_id
+    WHERE post_id = $1`,
+    [post_id],
+  );
+  return comments.rows;
+}
+
+async function getCommentCountByPost(post_id) {
+  const count = await pool.query(
+    `SELECT COUNT(comments.comment) FROM comments 
+   JOIN users ON users.user_id = comments.user_id
+    WHERE post_id = $1`,
+    [post_id],
+  );
+  return count.rows[0];
+}
+
+async function createNewComment(commentObject) {
+  const { comment, timestamp, user_id, post_id } = commentObject;
+  await pool.query(
+    `
+        INSERT INTO comments (comment, user_id, post_id, timestamp)
+        VALUES ($1,$2,$3,$4)
+        `,
+    [comment, user_id, post_id, timestamp],
+  );
+}
+async function searchPost(search) {
+  const result = await pool.query(
+    `SELECT post_id, post, a.user_id, timestamp, title, slug, b.username, b.displayname,b.role,b.bgcolor FROM posts a
+ JOIN users b ON a.user_id = b.user_id
+ WHERE title ILIKE $1 ORDER BY timestamp DESC`,
+    [search],
+  );
+  return result.rows;
+}
 
 module.exports = {
   isUsernameValid,
@@ -108,6 +146,9 @@ module.exports = {
   createNewPost,
   getAllPosts,
   getUserById,
-  getPostsBySlug,
+  getPostBySlug,
+  createNewComment,
   getCommentsByPost,
+  getCommentCountByPost,
+  searchPost,
 };

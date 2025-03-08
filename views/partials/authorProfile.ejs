@@ -1,0 +1,45 @@
+<a
+  href="/user/<%= author.username %>"
+  class="flex flex-col select-none pr-2 justify-center items-center gap-1"
+>
+  <div
+    class="relative rounded-full border-2 w-7 h-7 flex items-center justify-center text-white border-gray-800 font-bold <%= author.bgcolor %>"
+  >
+    <% if (author.role === "jerk-member") { %>
+    <i
+      class="fa-solid fa-poo absolute top-0 right-0 text-yellow-900 text-sm -translate-y-[70%] translate-x-2/4 rotate-[35deg]"
+    ></i>
+    <% } %> <% if (author.role === "super-admin") { %>
+    <!-- Admin Icon -->
+    <i
+      class="fa-solid fa-graduation-cap absolute -top-1 left-0 text-blue-800 text-lg -translate-y-[60%] -translate-x-2/4 -rotate-[35deg]"
+    ></i>
+    <i
+      class="font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-emerald-600 overflow-visible fa-solid fa-code absolute bottom-0 right-0 translate-x-4/4 translate-y-2/4 border rounded-sm p-0.5 text-[14px]"
+    ></i>
+    <% } %>
+    <!-- profile photo -->
+    <span class="text-center text-sm">
+      <%= author.displayname[0].toUpperCase() %>
+    </span>
+  </div>
+  <!-- Username -->
+  <div class="flex justify-center items-center gap-1">
+    <% if (author.role === "super-admin") { %>
+    <!-- Super Admin glow -->
+    <div
+      class="place-self-center font-extrabold text-end w-16 text-sm text-ellipsis overflow-hidden <%= author.namecolor %> absolute blur-md"
+    >
+      <%= user.unauthorized || author.displayname %>
+    </div>
+
+    <% } %>
+    <!-- User name for all -->
+    <div
+      class="font-extralight text-end text-sm break-words overflow-hidden <%= author.namecolor %>"
+    >
+      <%= user.unauthorized || author.displayname %>
+    </div>
+  </div>
+  <!-- Profile pic and Icons -->
+</a>
