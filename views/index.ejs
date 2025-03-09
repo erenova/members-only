@@ -30,11 +30,11 @@
         >
           <% if ( locals.user.level === 10) { %> <%-
           include('./partials/authorOffer') %> <% } else { %> <%-
-          include('./partials/thoughtbox') %>
+          include('./partials/thoughtbox') %> <% } %>
         </div>
-        <% } %>
       </div>
     </div>
+
     <%- include('./partials/clearQuery') %> <%- include('./partials/footer') %>
   </body>
 </html>
