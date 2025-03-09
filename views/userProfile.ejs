@@ -23,8 +23,13 @@
             <% } else { %> <%= username %>'s Posts <% } %>
           </div>
           <div class="p-2 flex flex-col gap-2" id="holder">
-            <% if (locals.posts) { %> <%- include('./partials/latestItemLoop')
-            %> <% } %>
+            <% if (locals.posts[0]) { %> <%-
+            include('./partials/latestItemLoop') %> <% } else { %>
+            <div class="italic">
+              <%= user.username === locals.username? "You" : "This user" %> have
+              no post!
+            </div>
+            <% } %>
           </div>
         </div>
       </div>

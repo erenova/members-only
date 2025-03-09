@@ -1,0 +1,27 @@
+<% if (user.user_id === author.user_id || user.level > 200) { %>
+<button
+  type="button"
+  id="delete-button"
+  class="cursor-pointer border text-sm flex flex-col items-center justify-center p-1 w-full rounded-lg bg-red-700 relative mt-1"
+>
+  <div>Delete the post</div>
+</button>
+<script>
+  const deleteBtn = document.getElementById("delete-button");
+  const overlay = document.getElementById("overlay");
+  const modal = document.getElementById("modal");
+
+  deleteBtn.addEventListener("click", () => {
+    overlay.classList.remove("hidden");
+    modal.classList.remove("hidden");
+    modal.classList.add("flex");
+  });
+
+  overlay.addEventListener("click", () => {
+    overlay.classList.add("hidden");
+    modal.classList.add("hidden");
+    modal.classList.remove("flex");
+  });
+</script>
+
+<% } %>

@@ -96,6 +96,13 @@ async function getPostBySlug(slug) {
   return post.rows[0];
 }
 
+async function getPostAuthorId(slug) {
+  const post = await pool.query(`SELECT user_id FROM posts WHERE slug = $1`, [
+    slug,
+  ]);
+  return post.rows[0];
+}
+
 async function getCommentsByPost(post_id) {
   const comments = await pool.query(
     ` SELECT * FROM comments 
@@ -165,6 +172,14 @@ async function getAllUsers() {
   return user.rows;
 }
 
+async function deletePostBySlug(slug) {
+  return await pool.query(
+    `DELETE FROM posts
+    WHERE slug = $1`,
+    [slug],
+  );
+}
+
 module.exports = {
   isUsernameValid,
   registerNewUser,
@@ -184,4 +199,6 @@ module.exports = {
   updateDisplayNameById,
   updateUserColorById,
   getAllUsers,
+  deletePostBySlug,
+  getPostAuthorId,
 };

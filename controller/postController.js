@@ -105,8 +105,23 @@ async function getAllPosts(req, res) {
   });
 }
 
+async function deletePost(req, res) {
+  const { slug } = req.params;
+  const authorId = await db.getPostAuthorId(slug);
+  if (
+    authorId?.user_id === req?.user?.user_id ||
+    req.user.role === "super-admin"
+  ) {
+    await db.deletePostBySlug(slug);
+    res.redirect("/home?successFloat=Post deleted.");
+  } else {
+    res.redirect("/home?errorFloat=Only the post owner can delete.");
+  }
+}
+
 module.exports = {
   createNewPost: [validatePostInput, createNewPost],
   getPost,
   getAllPosts,
+  deletePost,
 };
