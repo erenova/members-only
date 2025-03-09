@@ -6,27 +6,27 @@ const { pickBgColor } = require("../utils/userProfile");
 const usernameErr = "must only contain letters or numbers.";
 const displayNameErr = "must only contain whitespace, letters or numbers.";
 const usernameLengthErr =
-  "must be greater than 3 characters and less than 16 characters.";
+  "must be greater than 2 characters and less than 16 characters.";
 const displayNameLengthErr = "must be less than 16 characters.";
-const passLengthErr = "must be greater than 5 characters.";
+const passLengthErr = "must be greater than 3 characters.";
 
 const validateRegInput = [
   body("username")
     .trim()
     .isAlphanumeric()
     .withMessage(`User name ${usernameErr}`)
-    .isLength({ min: 4, max: 16 })
+    .isLength({ min: 3, max: 15 })
     .withMessage(`User name ${usernameLengthErr}`),
   body("displayname")
     .ltrim()
     .rtrim()
     .isAlphanumeric("en-US", { ignore: " " })
     .withMessage(`display name ${displayNameErr}`)
-    .isLength({ min: 1, max: 16 })
+    .isLength({ min: 1, max: 15 })
     .withMessage(`display name ${displayNameLengthErr}`),
   body("password")
     .trim()
-    .isLength({ min: 5 })
+    .isLength({ min: 4 })
     .withMessage(`Password ${passLengthErr}`),
 ];
 

@@ -168,7 +168,7 @@ async function updateUserColorById(user_id, color) {
 }
 
 async function getAllUsers() {
-  const user = await pool.query(`SELECT * FROM users`);
+  const user = await pool.query(`SELECT * FROM users ORDER BY USER_ID ASC`);
   return user.rows;
 }
 

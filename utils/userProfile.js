@@ -39,16 +39,14 @@ const roleDetails = {
   },
   author: {
     level: 100,
-    namecolor: "text-black",
+    namecolor: "text-teal-600 font-normal ",
   },
-  admin: {
-    level: 1000,
-    namecolor: "text-teal-600",
-  },
+
   "super-admin": {
     level: 999999,
+    bgcolor: " bg-gradient-to-br from-indigo-600 to-rose-800  ",
     namecolor:
-      "font-extrabold text-transparent bg-clip-text bg-gradient-to-b from-purple-700  to-cyan-400  ",
+      "font-extrabold text-transparent bg-clip-text bg-gradient-to-b from-purple-700  to-cyan-400 ",
   },
 };
 

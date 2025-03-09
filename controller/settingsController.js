@@ -11,7 +11,7 @@ const validateNameInput = [
     .rtrim()
     .isAlphanumeric("en-US", { ignore: " " })
     .withMessage(`display name ${displayNameErr}`)
-    .isLength({ min: 1, max: 16 })
+    .isLength({ min: 1, max: 15 })
     .withMessage(`display name ${displayNameLengthErr}`),
 ];
 
