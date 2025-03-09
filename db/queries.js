@@ -136,6 +136,24 @@ async function searchPost(search) {
   return result.rows;
 }
 
+async function getUserPosts(username) {
+  const posts = await pool.query(
+    `SELECT post_id, post, a.user_id, timestamp, title, slug, b.username, b.displayname,b.role,b.bgcolor FROM posts a
+ JOIN users b ON a.user_id = b.user_id
+ WHERE b.username = $1
+ ORDER BY timestamp DESC`,
+    [username],
+  );
+  return posts.rows;
+}
+
+async function updateDisplayNameById(user_id, displayname) {
+  await pool.query(`UPDATE users SET displayname = $1 WHERE user_id = $2;`, [
+    displayname,
+    user_id,
+  ]);
+}
+
 module.exports = {
   isUsernameValid,
   registerNewUser,
@@ -151,4 +169,6 @@ module.exports = {
   getCommentsByPost,
   getCommentCountByPost,
   searchPost,
+  getUserPosts,
+  updateDisplayNameById,
 };

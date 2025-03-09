@@ -1,7 +1,6 @@
-<a
-  href="/user/<%= author.username %>"
-  class="flex flex-col select-none pr-2 justify-center items-center gap-1"
->
+<a <% if (!user.unauthorized) { %>
+  href="/user/<%= author.username %>" <% } %> class="flex flex-col select-none
+  pr-2 justify-center items-center gap-1" >
   <div
     class="relative rounded-full border-2 w-7 h-7 flex items-center justify-center text-white border-gray-800 font-bold <%= author.bgcolor %>"
   >

@@ -55,6 +55,8 @@ async function createNewPost(req, res) {
 }
 
 async function getPost(req, res) {
+  const { error, success, errorFloat, successFloat } = req.query;
+
   const { slug } = req.params;
   const postDetails = await db.getPostBySlug(encodeURIComponent(slug));
   if (!postDetails) {
@@ -74,6 +76,10 @@ async function getPost(req, res) {
     post: populateDate(postDetails),
     comments,
     author: { ...author, ...roleDetails[author.role] },
+    errorFloat: errorFloat,
+    error: error,
+    success: success,
+    successFloat: successFloat,
   });
 }
 

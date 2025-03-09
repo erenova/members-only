@@ -6,7 +6,9 @@ const homeRouter = require("./routes/homeRouter");
 const authRouter = require("./routes/authRouter");
 const roleRouter = require("./routes/roleRouter");
 const postRouter = require("./routes/postRouter");
+const profileRouter = require("./routes/profileRouter");
 const commentRouter = require("./routes/commentRouter");
+const settingsRouter = require("./routes/settingsRouter");
 const pgStore = require("connect-pg-simple")(session);
 
 require("dotenv").config();
@@ -51,6 +53,8 @@ app.use(authRouter);
 app.use(roleRouter);
 app.use(postRouter);
 app.use(commentRouter);
+app.use(profileRouter);
+app.use(settingsRouter);
 
 // app Listener
 const PORT = process.env.PORT || 3000;

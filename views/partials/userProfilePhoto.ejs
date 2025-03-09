@@ -1,15 +1,14 @@
-<a
-  href="/user/<%= user.username %>"
-  class="flex flex-col select-none pr-2 justify-center items-center gap-1"
->
+<a <% if (!user.unauthorized) { %>
+  href="/user/<%= comment.username %>" <% } %> class="flex flex-col select-none
+  pr-2 justify-center items-center gap-1" >
   <div
-    class="relative rounded-full border-2 w-7 h-7 flex items-center justify-center text-white border-gray-800 font-bold <%= user.bgcolor %>"
+    class="relative rounded-full border-2 w-7 h-7 flex items-center justify-center text-white border-gray-800 font-bold <%= comment.bgcolor %>"
   >
-    <% if (user.role === "jerk-member") { %>
+    <% if (comment.role === "jerk-member") { %>
     <i
       class="fa-solid fa-poo absolute top-0 right-0 text-yellow-900 text-sm -translate-y-[70%] translate-x-2/4 rotate-[35deg]"
     ></i>
-    <% } %> <% if (user.role === "super-admin") { %>
+    <% } %> <% if (comment.role === "super-admin") { %>
     <!-- Admin Icon -->
     <i
       class="fa-solid fa-graduation-cap absolute -top-1 left-0 text-blue-800 text-lg -translate-y-[60%] -translate-x-2/4 -rotate-[35deg]"
@@ -20,26 +19,25 @@
     <% } %>
     <!-- profile photo -->
     <span class="text-center text-sm">
-      <%= user.displayname[0].toUpperCase() %>
+      <%= comment.displayname[0].toUpperCase() %>
     </span>
   </div>
   <!-- Username -->
   <div class="flex justify-center items-center gap-1">
-    <% if (user.role === "super-admin") { %>
+    <% if (comment.role === "super-admin") { %>
     <!-- Super Admin glow -->
     <div
-      class="place-self-center font-extrabold text-end w-16 text-sm text-ellipsis overflow-hidden <%= user.namecolor %> absolute blur-md"
+      class="place-self-center font-extrabold text-end w-16 text-sm text-ellipsis overflow-hidden <%= comment.namecolor %> absolute blur-md"
     >
-      <%= user.unauthorized || user.displayname %>
+      <%= user.unauthorized || comment.displayname %>
     </div>
 
     <% } %>
     <!-- User name for all -->
     <div
-      class="font-extralight text-end text-sm break-words overflow-hidden <%= user.namecolor %>"
+      class="font-extralight text-end text-sm break-words overflow-hidden <%= comment.namecolor %>"
     >
-      <%= user.unauthorized || user.displayname %>
+      <%= user.unauthorized || comment.displayname %>
     </div>
   </div>
-  <!-- Profile pic and Icons -->
 </a>

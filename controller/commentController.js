@@ -9,7 +9,7 @@ const validateCommentInput = [
   body("comment")
     .ltrim()
     .rtrim()
-    .isLength({ min: 1, max: 125 })
+    .isLength({ min: 1, max: 126 })
     .withMessage(`Comment ${commentLengthErr}`),
 ];
 

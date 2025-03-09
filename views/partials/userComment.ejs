@@ -2,7 +2,7 @@
 
 <div class="justify-start flex-col items-start w-full flex gap-2">
   <div
-    class="m-4 mb-1 border-2 border-black rounded relative drop-shadow-2xl <%= comment.bgcolor %> text-white sm:w-3/4 md:w-2/4 break-words p-2"
+    class="m-4 mb-1 border-2 border-black rounded relative drop-shadow-2xl <%= comment.bgcolor %> text-white sm:w-3/4 md:w-2/4 w-full break-words p-2 px-4"
   >
     <div class="p-2"><%= comment.comment%></div>
     <div class="absolute right-1 bottom-0 text-xs text-slate-800">
@@ -32,17 +32,16 @@
   >
     <div class="p-4"><%= comment.comment %></div>
     <div class="absolute right-1 bottom-0 text-xs text-slate-900 opacity-50">
-      <%= comment.date.monthName %> <%= comment.date.day %> |
-      <span class="">
-        <%= comment.date.hour %>:<%= comment.date.minute %>
-      </span>
+      <%= comment.date.monthName %> <%= comment.date.day %> | <%=
+      comment.date.hour %>:<%= comment.date.minute %>
     </div>
     <div class="absolute -bottom-0 right-0 translate-y-full -translate-x-1/4">
       <%- include('./userCommentIcon') %>
     </div>
   </div>
   <div class="w-16 translate-x-1/4 mt-6">
-    <%- include('userProfilePhoto', {user: {...comment}}) %>
+    <% console.log(comment); %> <%- include('userProfilePhoto', {comment:
+    {...comment}}) %>
   </div>
 </div>
 <% } %>

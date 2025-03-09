@@ -8,7 +8,7 @@ async function getHome(req, res) {
   let newPosts = [];
   for (let index = 0; index < posts.length; index++) {
     const totalComment = await db.getCommentCountByPost(posts[index].post_id);
-    newPosts.push({ ...posts[index], ...totalComment });
+    newPosts.push({ ...posts[index], count: Number(totalComment.count) + 1 });
   }
   res.render("index", {
     user: { ...req.user, ...roleDetails[req.user.role] },

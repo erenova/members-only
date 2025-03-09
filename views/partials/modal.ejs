@@ -34,14 +34,49 @@
     action="/user/jerk"
     method="POST"
   >
-    <div class="flex flex-col gap-8">
+    <div id="question-1" class="flex flex-col gap-8">
       <label class="text-xl" for="secret"
         >Do you admit that you are a jerk?</label
       >
       <button
+        type="button"
+        id="level-1"
         class="border rounded p-2 text-black hover:bg-green-700 hover:text-white transition-colors cursor-pointer shadow-md drop-shadow-md"
       >
         Yes
+      </button>
+    </div>
+    <div id="question-2" class="hidden flex-col gap-4">
+      <label class="text-xl" for="secret"
+        >Okay, go back please? Author secret is
+        <strong>be-an-author</strong>
+      </label>
+      <button
+        id="exit-form"
+        type="button"
+        class="border rounded p-2 text-black hover:bg-green-700 hover:text-white transition-colors cursor-pointer shadow-md drop-shadow-md"
+      >
+        I got what i want
+      </button>
+      <button
+        id="level-2"
+        type="button"
+        class="border rounded p-2 text-black hover:bg-green-700 hover:text-white transition-colors cursor-pointer shadow-md drop-shadow-md bg-red-600"
+      >
+        I'm an ASS
+      </button>
+    </div>
+    <div id="question-3" class="hidden flex-col gap-2">
+      <label class="text-lg" for="secret"
+        >Still here? Brave choice. Just know — from this point forward, it’s all
+        on you. And remember… <strong>this action cannot be undone</strong>.
+      </label>
+
+      <button
+        id="level-3"
+        class="border rounded p-1 text-black hover:bg-green-700 hover:text-white transition-colors cursor-pointer shadow-md drop-shadow-md bg-red-600"
+      >
+        With all my honesty, I'm a jerkassbitch
       </button>
     </div>
   </form>

@@ -17,7 +17,7 @@
         >
           <label for="comment" class="text-xl font-semibold"
             >Leave a comment</label
-          >
+          t>
           <textarea
             required
             maxlength="125"
@@ -60,7 +60,7 @@
               <div
                 class="m-4 mb-1 border-3 border-black rounded relative drop-shadow-2xl <%= author.bgcolor %> text-white sm:w-3/4 md:w-2/4 break-words p-2"
               >
-                <div class="p-2"><%= post.post%></div>
+                <div class="p-2 break-words"><%= post.post%></div>
                 <div
                   class="absolute bottom-0 left-0 translate-y-full translate-x-1/4"
                 >
@@ -85,6 +85,6 @@
         </div>
       </div>
     </div>
+    <%- include('./partials/clearQuery') %>
   </body>
 </html>
-<!-- <div class="w-4 "><%- include('./partials/messageIcon') %></div> -->

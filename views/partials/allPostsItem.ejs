@@ -23,7 +23,9 @@
       </div>
       <!-- Profile Picture -->
       <a
-        href="/user/<%= activePost.username %>"
+       <% if (!user.unauthorized) { %>
+         href="/user/<%= activePost.username %>"
+        <% } %>
         class="flex select-none pr-2 justify-center items-center gap-1"
       >
         <!-- Username -->
