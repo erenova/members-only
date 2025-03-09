@@ -1150,6 +1150,9 @@
   .bg-rose-600 {
     background-color: var(--color-rose-600);
   }
+  .bg-sky-100 {
+    background-color: var(--color-sky-100);
+  }
   .bg-sky-700 {
     background-color: var(--color-sky-700);
   }
@@ -1519,6 +1522,12 @@
   .underline {
     text-decoration-line: underline;
   }
+  .opacity-25 {
+    opacity: 25%;
+  }
+  .opacity-45 {
+    opacity: 45%;
+  }
   .opacity-50 {
     opacity: 50%;
   }
@@ -1851,6 +1860,16 @@
     @media (width >= 40rem) {
       --tw-border-style: none;
       border-style: none;
+    }
+  }
+  .sm\:p-1 {
+    @media (width >= 40rem) {
+      padding: calc(var(--spacing) * 1);
+    }
+  }
+  .sm\:p-2 {
+    @media (width >= 40rem) {
+      padding: calc(var(--spacing) * 2);
     }
   }
   .sm\:p-3 {
