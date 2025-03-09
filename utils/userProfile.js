@@ -57,4 +57,4 @@ function pickBgColor() {
   return profileBgColors[Math.floor(Math.random() * arraySize)];
 }
 
-module.exports = { pickBgColor, roleDetails };
+module.exports = { pickBgColor, roleDetails, profileBgColors };

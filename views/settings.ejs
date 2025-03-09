@@ -3,7 +3,7 @@
   <head>
     <%- include('partials/head', {title:"Members-Only Dashboard"}) %>
   </head>
-  <body class="font-[roboto]">
+  <body class="font-[roboto] min-h-[100vh] flex flex-col">
     <%- include('./partials/header') %> <%- include('./partials/modal') %> <%-
     include('./partials/background') %> <%- include('./partials/error') %> <%-
     include('./partials/success') %>
@@ -12,33 +12,64 @@
         class="container flex sm:flex-row flex-col justify-center md:mt-8 mt-4 gap-8 sm:gap-16 md:gap-24"
       >
         <div
-          class="flex flex-col border mb-8 order-2 sm:order-1 p-y bg-white rounded-sm p-4 w-3/4  overflow-hidden sm:w-auto self-center sm:self-auto"
+          class="flex flex-col border mb-8 order-2 sm:order-1 p-y bg-white rounded-sm p-4 w-3/4 overflow-hidden sm:w-auto self-center sm:self-auto"
         >
           <div
-            class="text-stone-800 font-semibold  flex justify-around sm:self-auto sm:gap-8 text-2xl"
+            class="text-stone-800 font-semibold flex justify-around sm:self-auto sm:gap-8 text-2xl"
           >
-          Settings
-          </span>
-        
+            Settings
           </div>
           <div class="p-2 flex flex-col gap-2" id="holder">
-         <form action="/settings/update" method="post" class="flex justify-center items-center flex-col">
-          <label for="displayname" class="text-lg font-light self-start">Display name:</label>
-          <input
-        type="text"
-        required
-        maxlength="16"
-        name="displayname"
-        id="displayname"
-        placeholder="John doe master ultra..."
-        class="font-medium border rounded-sm bg-white drop-shadow-2xl shadow p-1"
-      />
-          <button class="mt-2  p-2 font-light italic w-20 rounded ring-1 ring-green-600 bg-green-200 cursor-pointer">Update</button>
-         </form>
+            <form
+              action="/settings/update/displayname"
+              method="post"
+              class="flex justify-center items-center flex-col"
+            >
+              <label for="displayname" class="text-lg font-light self-start"
+                >Display name:</label
+              >
+              <input
+                type="text"
+                required
+                maxlength="16"
+                name="displayname"
+                id="displayname"
+                placeholder="John doe master ultra..."
+                class="font-medium border rounded-sm bg-white drop-shadow-2xl shadow p-1"
+              />
+              <button
+                class="mt-2 p-2 font-light italic w-20 rounded ring-1 ring-green-600 bg-green-200 cursor-pointer"
+              >
+                Update
+              </button>
+            </form>
+          </div>
+          <div class="flex flex-col justify-center items-center">
+            <span class="text-lg font-light self-start">Profile Color:</span>
+
+            <form action="settings/update/color" method="POST">
+              <input id="color" type="hidden" name="color" />
+              <div class="grid grid-cols-5 gap-2">
+                <% for( let i = 0; i < colors.length; i++ ) { %>
+                <button
+                  value="<%= colors[i] %>"
+                  onclick="setColor(this.value)"
+                  class="cursor-pointer rounded-full border-2 w-9 h-9 flex justify-center items-center text-white border-gray-800 font-bold <%= colors[i] %> <% if (user.bgcolor === colors[i]) { %> ring-1 ring-black <% } %>"
+                >
+                  <%= user.displayname[0].toUpperCase() %>
+                </button>
+                <% } %>
+              </div>
+            </form>
           </div>
         </div>
-        
+      </div>
     </div>
-    <%- include('./partials/clearQuery') %>
+    <%- include('./partials/clearQuery') %> <%- include('./partials/footer') %>
+    <script>
+      function setColor(value) {
+        document.getElementById("color").value = value;
+      }
+    </script>
   </body>
 </html>

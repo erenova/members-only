@@ -3,7 +3,7 @@
   <head>
     <%- include('partials/head', {title:`Post: ${locals.post.title}`}) %>
   </head>
-  <body class="font-[roboto]">
+  <body class="font-[roboto] min-h-[100vh] flex flex-col">
     <%- include('./partials/header') %> <%- include('./partials/modal') %> <%-
     include('./partials/background') %> <%- include('./partials/error') %> <%-
     include('./partials/success') %>
@@ -16,8 +16,8 @@
           class="flex flex-col"
         >
           <label for="comment" class="text-xl font-semibold"
-            >Leave a comment</label
-          t>
+            >Leave a comment
+          </label>
           <textarea
             required
             maxlength="125"
@@ -85,6 +85,6 @@
         </div>
       </div>
     </div>
-    <%- include('./partials/clearQuery') %>
+    <%- include('./partials/clearQuery') %> <%- include('./partials/footer') %>
   </body>
 </html>

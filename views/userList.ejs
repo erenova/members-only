@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html translate="no" lang="en">
+  <head>
+    <%- include('partials/head', {title:"Members-Only Dashboard"}) %>
+  </head>
+  <body class="font-[roboto] min-h-[100vh] flex flex-col">
+    <%- include('./partials/header') %> <%- include('./partials/modal') %> <%-
+    include('./partials/background') %> <%- include('./partials/error') %> <%-
+    include('./partials/success') %>
+    <div class="w-full flex items-center justify-center flex-col relative">
+      <div
+        class="container flex sm:flex-row flex-col justify-center md:mt-8 mt-4 gap-8 sm:gap-16 md:gap-24"
+      >
+        <div
+          class="flex flex-col border mb-8 order-2 sm:order-1 p-y bg-white rounded-sm p-4 w-3/4 overflow-hidden sm:w-auto self-center sm:self-auto"
+        >
+          <div
+            class="text-stone-800 font-semibold relative flex justify-center sm:self-auto sm:gap-8 text-2xl"
+          >
+            User List
+            <span class="right-0 bottom-1 absolute text-gray-900 text-sm"
+              >Total user:
+              <span class="text-gray-700"><%= totalUsers %></span></span
+            >
+          </div>
+          <div class="p-2 grid grid-cols-3 gap-2" id="holder">
+            <% for( let index = 0; index < userList.length; index++ ) { %>
+
+            <a <% if (!user.unauthorized) { %>
+              href="/user/<%= userList[index].username %>" <% } %> class="flex
+              flex-col select-none pr-2 justify-center items-center gap-1" >
+              <div
+                class="relative rounded-full border-2 w-7 h-7 flex items-center justify-center text-white border-gray-800 font-bold <%= userList[index].bgcolor %>"
+              >
+                <% if (userList[index].role === "jerk-member") { %>
+                <i
+                  class="fa-solid fa-poo absolute top-0 right-0 text-yellow-900 text-sm -translate-y-[70%] translate-x-2/4 rotate-[35deg]"
+                ></i>
+                <% } %> <% if (userList[index].role === "super-admin") { %>
+                <!-- Admin Icon -->
+                <i
+                  class="fa-solid fa-graduation-cap absolute -top-1 left-0 text-blue-800 text-lg -translate-y-[60%] -translate-x-2/4 -rotate-[35deg]"
+                ></i>
+                <i
+                  class="font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-emerald-600 overflow-visible fa-solid fa-code absolute bottom-0 right-0 translate-x-4/4 translate-y-2/4 border rounded-sm p-0.5 text-[14px]"
+                ></i>
+                <% } %>
+                <!-- profile photo -->
+                <span class="text-center text-sm">
+                  <%= userList[index].displayname[0].toUpperCase() %>
+                </span>
+              </div>
+              <!-- Username -->
+              <div class="flex justify-center items-center gap-1">
+                <% if (userList[index].role === "super-admin") { %>
+                <!-- Super Admin glow -->
+                <div
+                  class="place-self-center font-extrabold text-end w-16 text-sm text-ellipsis overflow-hidden <%= userList[index].namecolor %> absolute blur-md"
+                >
+                  <%= user.unauthorized || userList[index].displayname %>
+                </div>
+
+                <% } %>
+                <!-- User name for all -->
+                <div
+                  class="font-extralight text-end text-sm break-words overflow-hidden <%= userList[index].namecolor %>"
+                >
+                  <%= user.unauthorized || userList[index].displayname %>
+                </div>
+              </div>
+            </a>
+
+            <% } %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%- include('./partials/clearQuery') %> <%- include('./partials/footer') %>
+  </body>
+</html>

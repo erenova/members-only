@@ -153,6 +153,17 @@ async function updateDisplayNameById(user_id, displayname) {
     user_id,
   ]);
 }
+async function updateUserColorById(user_id, color) {
+  await pool.query(`UPDATE users SET bgcolor = $1 WHERE user_id = $2;`, [
+    color,
+    user_id,
+  ]);
+}
+
+async function getAllUsers() {
+  const user = await pool.query(`SELECT * FROM users`);
+  return user.rows;
+}
 
 module.exports = {
   isUsernameValid,
@@ -171,4 +182,6 @@ module.exports = {
   searchPost,
   getUserPosts,
   updateDisplayNameById,
+  updateUserColorById,
+  getAllUsers,
 };
