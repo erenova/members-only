@@ -44,7 +44,6 @@ const roleDetails = {
 
   "super-admin": {
     level: 999999,
-    bgcolor: " bg-gradient-to-br from-indigo-600 to-rose-800  ",
     namecolor:
       "font-extrabold text-transparent bg-clip-text bg-gradient-to-b from-purple-700  to-cyan-400 ",
   },
