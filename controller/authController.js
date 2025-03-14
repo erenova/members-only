@@ -6,9 +6,9 @@ const { pickBgColor } = require("../utils/userProfile");
 const usernameErr = "must only contain letters or numbers.";
 const displayNameErr = "must only contain whitespace, letters or numbers.";
 const usernameLengthErr =
-  "must be greater than 2 characters and less than 16 characters.";
+  "must be at least 3 characters and less than 16 characters.";
 const displayNameLengthErr = "must be less than 16 characters.";
-const passLengthErr = "must be greater than 3 characters.";
+const passLengthErr = "must be at least 3 characters.";
 
 const validateRegInput = [
   body("username")
@@ -26,7 +26,7 @@ const validateRegInput = [
     .withMessage(`display name ${displayNameLengthErr}`),
   body("password")
     .trim()
-    .isLength({ min: 4 })
+    .isLength({ min: 3 })
     .withMessage(`Password ${passLengthErr}`),
 ];
 
@@ -43,13 +43,17 @@ function getRegisterForm(req, res) {
 
 async function postRegisterForm(req, res) {
   const errors = validationResult(req);
+  const { username, displayname, password } = req.body;
+
   if (!errors.isEmpty()) {
     return res.status(400).render("register", {
       error: errors.array()[0].msg,
+      username,
+      displayname,
+      password,
     });
   }
 
-  const { username, displayname, password } = req.body;
   const bgcolor = pickBgColor();
   const formattedUsername = username.toLowerCase();
   const isNameValid = await db.isUsernameValid(formattedUsername);

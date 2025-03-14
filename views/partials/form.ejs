@@ -15,6 +15,7 @@
     <fieldset
       class="flex flex-col justify-center items-center mt-2 w-3/4 self-center"
     >
+      <% console.log(locals.username); %>
       <label class="self-start" for="username"> User name:</label>
       <input
         class="border-2 border-gray-500 rounded-md w-full h-7 focus:border-teal-500 focus:outline-none"
@@ -22,6 +23,7 @@
         name="username"
         id="username"
         maxlength="15"
+        value="<%= locals.username %>"
         required
       />
       <% if (locals.form.type === "register") { %>
@@ -32,6 +34,7 @@
         name="displayname"
         id="displayname"
         maxlength="15"
+        value="<%= locals.displayname %>"
         required
       />
       <% } %>
@@ -42,6 +45,7 @@
           type="password"
           name="password"
           id="password"
+          value="<%= locals.password%>"
           required
         />
         <button
