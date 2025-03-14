@@ -6,8 +6,8 @@ const { pickBgColor } = require("../utils/userProfile");
 const usernameErr = "must only contain letters or numbers.";
 const displayNameErr = "must only contain whitespace, letters or numbers.";
 const usernameLengthErr =
-  "must be at least 3 characters and less than 16 characters.";
-const displayNameLengthErr = "must be less than 16 characters.";
+  "must be at least 3 characters and maximum of 15 characters.";
+const displayNameLengthErr = "must be maximum of 15 characters.";
 const passLengthErr = "must be at least 3 characters.";
 
 const validateRegInput = [
